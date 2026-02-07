@@ -1,19 +1,23 @@
+input.onButtonPressed(Button.B, function () {
+    control.reset()
+})
 let distance = 0
-maqueen.motorStop(maqueen.Motors.All)
 // Countdown on LED before starting
 basic.showNumber(3)
-basic.pause(1000)
+basic.pause(2000)
 basic.showNumber(2)
-basic.pause(1000)
+basic.pause(2000)
 basic.showNumber(1)
-basic.pause(1000)
+basic.pause(2000)
 basic.clearScreen()
+maqueen.motorStop(maqueen.Motors.All)
 basic.forever(function () {
     // Get distance from ultrasonic sensor
     distance = maqueen.Ultrasonic()
     if (distance > 15) {
         // Move forward
         maqueen.motorRun(maqueen.Motors.All, maqueen.Dir.CW, 80)
+        maqueen.servoRun(maqueen.Servos.S1, 90)
     } else {
         // Stop
         maqueen.motorStop(maqueen.Motors.All)
